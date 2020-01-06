@@ -32,6 +32,20 @@ class App extends Component {
     filterID: shortid.generate(),
   };
 
+  componentDidMount() {
+    const contactsFromLocalStorage = localStorage.getItem('contacts');
+    if (contactsFromLocalStorage) {
+      this.setState({ contacts: JSON.parse(contactsFromLocalStorage) });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
