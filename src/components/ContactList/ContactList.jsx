@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 const Contactlist = ({ onDelete, filtedContacts }) => (
   <ul>
-    {filtedContacts.map(contact => {
-      const { id, name, number } = contact;
+    {filtedContacts.map(({ id, name, number }) => {
       return (
         <li key={id}>
           {name}: {number}
